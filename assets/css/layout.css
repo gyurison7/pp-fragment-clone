@@ -1,0 +1,109 @@
+@import url("./reset.css");
+@import url("./common.css");
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 999;
+}
+.loader-spinner {
+  display: block;
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: 2em;
+  height: 2em;
+  fill: #fff;
+  animation: spinAnimation 1s ease-in-out infinite;
+}
+@keyframes spinAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.header-side-bar {
+  opacity: 0;
+  animation: headerAnimation 2s 6.5s ease forwards;
+}
+@keyframes headerAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.875rem;
+  padding: 0 1.25rem;
+  background-color: #000;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  z-index: 99;
+}
+header .header-sub-title {
+  flex: 1;
+  text-align-last: left;
+}
+header .header-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex: 1;
+  text-align: center;
+}
+header .get-the-font {
+  text-align: right;
+  padding: 0.75rem 1.25rem;
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.cursor {
+  cursor: ↖, auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  /* margin-top: calc(var(--cursor-size)*-0.5); */
+  /* margin-left: calc(var(--cursor-size)*-0.5); */
+  color: #fff;
+  z-index: 9999;
+  pointer-events: none;
+  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+.cursor .span {
+  display: flex;
+  align-items: bottom;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 0.2em;
+  line-height: 1;
+  font-size: 2.875rem;
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform-origin: 100% 100%;
+  will-change: transform;
+}

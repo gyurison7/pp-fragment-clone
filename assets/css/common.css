@@ -1,0 +1,51 @@
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+}
+:root {
+  --color-text: #fff;
+  --color-bg: #000;
+  --font-family-glare: "GlareVariable", Iowan Old Style, Apple Garamond,
+    Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --font-family-sans: "SansVariable", -apple-system, BlinkMacSystemFont,
+    avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu,
+    roboto, noto, arial, sans-serif;
+  --font-family-serif: "SerifVariable", Iowan Old Style, Apple Garamond,
+    Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --font-family-text: "TextVariable", Iowan Old Style, Apple Garamond,
+    Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --header-height: 3.875rem;
+  --sidebar-width: var(--header-height);
+  --container-width: calc(100% - (var(--sidebar-width)));
+  --padding: 1.25rem;
+  --container-padding: 0 var(--padding);
+}
+@media (min-width: 1200px) and (max-width: 1599px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media (min-width: 1600px) and (max-width: 1999px) {
+  html {
+    font-size: 17px;
+  }
+}
+.glare {
+  font-family: var(--font-family-glare);
+}
+.sans {
+  font-family: var(--font-family-sans);
+}
+.serif {
+  font-family: var(--font-family-serif);
+}
+.text {
+  font-family: var(--font-family-text);
+}
