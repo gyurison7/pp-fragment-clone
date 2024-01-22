@@ -13,36 +13,30 @@ const gatherMotion = gsap.timeline({
   scrollTrigger: {
     trigger: ".sc-style",
     start: "0% 0%",
-    end: "100% 0%",
-    toggleActions: "play none none reverse",
-    // markers: true,
+    end: "100% 100%",
+    scrub: true,
+    markers: true,
   },
 });
 gatherMotion
   .from(
     ".sc-style .gather-item.a1",
-    {
-      transform: "translate(50%, -25%)",
-      rotate: "20deg",
-    },
+    { xPercent: 50, yPercent: -25, rotate: "20deg", opacity: 0 },
     "a"
   )
   .from(
     ".sc-style .gather-item.a2",
-    {
-      transform: "translate(-25%, -100%)",
-      rotate: "-30deg",
-    },
+    { xPercent: -25, yPercent: -100, rotate: "-30deg", opacity: 0 },
     "a"
   )
   .from(
     ".sc-style .gather-item.a3",
-    {
-      transform: "translate(-50%, 15%)",
-      rotate: "-45deg",
-    },
+    { xPercent: -50, yPercent: 15, rotate: "-45deg", opacity: 0 },
     "a"
-  );
+  )
+  .to(".sc-style .gather-item.a1", { xPercent: 15, yPercent: -100, opacity: 0.5 }, "b")
+  .to(".sc-style .gather-item.a2", { xPercent: -15, yPercent: 60, opacity: 0.5 }, "b")
+  .to(".sc-style .gather-item.a3", { xPercent: -15, yPercent: 60, opacity: 0.5 }, "b");
 
 // sc-possible
 function changeAnimation(selector, moveArray, fontWeightArray, duration = 3000, delay = 3500) {
@@ -222,6 +216,7 @@ const posterSwiper = new Swiper(".poster-swiper-container", {
 //   .from(".gather-letters .l5", { xPercent: 0, yPercent: 50, opacity: 0 }, "a+=0.1")
 //   .from(".gather-letters .l6", { xPercent: 20, yPercent: 0, opacity: 0 }, "a+=0.1");
 
+// sc-language
 gsap.set(".gather-letters .l1", { xPercent: -20, yPercent: 20, opacity: 0 });
 gsap.set(".gather-letters .l2", { xPercent: 20, yPercent: 0, opacity: 0 });
 gsap.set(".gather-letters .l3", { xPercent: 0, yPercent: 15, scale: 1.2, opacity: 0 });
@@ -245,7 +240,7 @@ gatherLettersMotion
   .to(".gather-letters .l5", { xPercent: 0, yPercent: 0, opacity: 1 }, "a+=0.1")
   .to(".gather-letters .l6", { xPercent: 0, yPercent: 0, opacity: 1 }, "a+=0.1");
 
-gsap.to(".sc-language .language-row li", {
+const languageMotion = gsap.timeline({
   scrollTrigger: {
     trigger: ".sc-language .language-list",
     start: "0% 90%",
@@ -253,21 +248,92 @@ gsap.to(".sc-language .language-row li", {
     scrub: true,
     // markers: true,
   },
-  opacity: 1,
-  stagger: {
-    each: 0.1, // li 사이의 지연 시간
-    grid: "auto", // 그리드 스태거를 사용하여 각 행에 동시에 적용
-    from: "start", // 첫 번째 요소부터 시작
-  },
 });
+languageMotion
+  .to(".sc-language .language-col1 li", { opacity: 1, stagger: 0.1 }, "a")
+  .to(".sc-language .language-col2 li", { opacity: 1, stagger: 0.1 }, "a")
+  .to(".sc-language .language-col3 li", { opacity: 1, stagger: 0.1 }, "a")
+  .to(".sc-language .language-col4 li", { opacity: 1, stagger: 0.1 }, "a");
 
-gsap.to(".sc-language .content p", {
+gsap.to(".sc-language .content-section p", {
   scrollTrigger: {
-    trigger: ".sc-language .content",
+    trigger: ".sc-language .content-section",
     start: "30% 100%",
     end: "100% 0%",
     scrub: true,
     // markers: true,
   },
   fontVariationSettings: `"wght" 900`,
+});
+
+// sc-purchase
+const gatherCapitlAMotion = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".sc-purchase .gather-capital-a",
+    start: "15% 0%",
+    end: "150% 0%",
+    scrub: true,
+    // markers: true,
+  },
+});
+gatherCapitlAMotion
+  .from(".gather-capital-a .capital1", { xPercent: 0, yPercent: -25, opacity: 0 }, "a")
+  .from(".gather-capital-a .capital2", { xPercent: -25, yPercent: -100, opacity: 0 }, "a")
+  .from(".gather-capital-a .capital3", { xPercent: 50, yPercent: -50, opacity: 0 }, "a")
+  .from(".gather-capital-a .capital4", { xPercent: -20, yPercent: 25, opacity: 0 }, "a")
+  .from(".gather-capital-a .capital5", { xPercent: 30, yPercent: -40, opacity: 0 }, "a")
+  .from(".gather-capital-a .capital6", { xPercent: -30, yPercent: -5, opacity: 0 }, "a");
+
+const upAndScatterMotion = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".sc-purchase",
+    start: "10% 0%",
+    end: "100% 0%",
+    scrub: true,
+    // markers: true,
+  },
+});
+upAndScatterMotion
+  .from(".sc-purchase .item1", { x: 0, y: 695 }, "a")
+  .from(".sc-purchase .item2", { x: 0, y: 695 }, "a+=0.1")
+  .from(".sc-purchase .item3", { x: 0, y: 695 }, "a+=0.2")
+  .to(".sc-purchase .item1", { x: 0, y: -695 }, "b")
+  .to(".sc-purchase .item2", { x: 0, y: -695 }, "b+=0.05")
+  .to(".sc-purchase .item3", { x: 0, y: -695 }, "b+=0.1")
+  .to(".capital1", { xPercent: 0, yPercent: -25, opacity: 0 }, "c")
+  .to(".capital2", { xPercent: -25, yPercent: -100, rotate: "45deg", opacity: 0 }, "c")
+  .to(".capital3", { xPercent: 50, yPercent: 20, rotate: "25deg", opacity: 0 }, "c")
+  .to(".capital4", { xPercent: -20, yPercent: 25, rotate: "30deg", opacity: 0 }, "c")
+  .to(".capital5", { xPercent: 30, yPercent: -40, rotate: "25deg", opacity: 0 }, "c")
+  .to(".capital6", { xPercent: -30, yPercent: -5, rotate: "20deg", opacity: 0 }, "c");
+
+// sc-credits
+const paragraphMotion = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".sc-credits",
+    start: "0% 70%",
+    end: "100% 50%",
+    scrub: true,
+    // markers: true,
+  },
+});
+paragraphMotion
+  .from(".sc-credits .border-animation", { width: 0 }, "a")
+  .from(".sc-credits .p-col1 .line", { yPercent: 200, opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-credits .p-col2 .line", { yPercent: 200, opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-credits .p-col3 .line", { yPercent: 200, opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-credits .p-col4 .line", { yPercent: 200, opacity: 0, stagger: 0.1 }, "a");
+
+// footer
+gsap.from("footer .omega", {
+  scrollTrigger: {
+    trigger: "footer",
+    start: "0% 100%",
+    end: "100% 100%",
+    scrub: true,
+    // markers: true,
+  },
+  yPercent: 15,
+  scale: 0,
+  fontVariationSettings: `"wght" 700`,
 });

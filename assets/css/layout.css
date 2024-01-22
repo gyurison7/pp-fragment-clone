@@ -75,6 +75,31 @@ header .get-the-font {
   transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+footer {
+  width: var(--container-width);
+  padding: var(--container-padding);
+  margin-left: auto;
+  overflow: hidden;
+}
+footer .omega {
+  display: block;
+  width: 200%;
+  height: 1.6em;
+  left: -50%;
+  font-size: 66vw;
+  font-variation-settings: "wght" 100;
+  line-height: 0.8;
+  text-align: center;
+  transform-origin: 50% 0;
+  transform: scale(2);
+}
+footer small {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 .cursor {
   cursor: ↖, auto;
   position: fixed;
