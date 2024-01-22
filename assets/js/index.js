@@ -8,32 +8,103 @@ $(document).ready(function () {
   }, 3000);
 });
 
+// 동적 줄바꿈 처리
+function dynamicWrapLines() {
+  const elementArray = document.querySelectorAll(".dynamic-text");
+
+  elementArray.forEach((element) => {
+    const text = element.innerText;
+    const wordArray = text.split(" "); // 공백을 기준으로 단어를 잘라서 배열 생성
+    let line = "";
+    element.innerHTML = "";
+
+    wordArray.forEach((word) => {
+      const testLine = line + word + " "; // 가로너비 비교를 위한 테스트 라인 생성
+      const tempSpan = document.createElement("span"); // 임시 span 생성
+      tempSpan.style.position = "absolute";
+      tempSpan.style.left = "-9999px";
+      tempSpan.style.visibility = "hidden";
+      tempSpan.innerText = testLine;
+      document.body.appendChild(tempSpan); // body에 tempSpan 추가
+
+      // tempSpan의 가로너비와 해당 요소의 가로너비 비교
+      if (tempSpan.offsetWidth > element.offsetWidth) {
+        const newLine = document.createElement("span"); // tempSpan의 너비가 크다면 새로운 라인 생성
+        newLine.className = "line";
+        newLine.innerText = line; // 현재 단어 이전까지의 텍스트
+        element.appendChild(newLine); // 최종적으로 요소에 새로운 라인을 자식으로 추가
+        line = word + " "; // 라인에 현재 단어를 넣어서 초기화
+      } else {
+        line = testLine;
+      }
+
+      document.body.removeChild(tempSpan); // body에서 tempSpan 제거
+    });
+
+    const lastLine = document.createElement("span");
+    lastLine.className = "line";
+    lastLine.innerText = line;
+    element.appendChild(lastLine);
+  });
+}
+
+dynamicWrapLines();
+window.addEventListener("resize", dynamicWrapLines);
+
+// sc-intro
+const paragraphMotion1 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".sc-intro .top-section",
+    start: "0% 100%",
+    end: "100% 50%",
+    scrub: true,
+    // markers: true,
+  },
+});
+paragraphMotion1
+  .from(".sc-intro .top-section .description1 .line", { opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-intro .top-section .description2 .line", { opacity: 0, stagger: 0.1 }, "a+=1")
+  .from(".sc-intro .intro-img", { yPercent: 25 }, "a+=2");
+
+const paragraphMotion2 = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".sc-intro .bottom-section",
+    start: "0% 60%",
+    end: "100% 50%",
+    scrub: true,
+    // markers: true,
+  },
+});
+paragraphMotion2
+  .from(".sc-intro .bottom-section .description1 .line", { opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-intro .bottom-section .description2 .line", { opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-intro .border-animation", { width: 0, stagger: 0.1 }, "a+=0.5");
+
 // sc-style
 const gatherMotion = gsap.timeline({
   scrollTrigger: {
     trigger: ".sc-style",
-    start: "0% 0%",
-    end: "100% 100%",
+    start: "0% 10%",
+    end: "60% 100%",
     scrub: true,
-    markers: true,
+    // markers: true,
   },
 });
 gatherMotion
-  .from(
-    ".sc-style .gather-item.a1",
-    { xPercent: 50, yPercent: -25, rotate: "20deg", opacity: 0 },
-    "a"
-  )
-  .from(
-    ".sc-style .gather-item.a2",
-    { xPercent: -25, yPercent: -100, rotate: "-30deg", opacity: 0 },
-    "a"
-  )
-  .from(
-    ".sc-style .gather-item.a3",
-    { xPercent: -50, yPercent: 15, rotate: "-45deg", opacity: 0 },
-    "a"
-  )
+  .from(".gather-item.a1", { xPercent: 50, yPercent: -25, rotate: "20deg", opacity: 0 }, "a")
+  .from(".gather-item.a2", { xPercent: -25, yPercent: -100, rotate: "-30deg", opacity: 0 }, "a")
+  .from(".gather-item.a3", { xPercent: -50, yPercent: 15, rotate: "-45deg", opacity: 0 }, "a");
+
+const scatterMotion = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".sc-possible",
+    start: "0% 100%",
+    end: "100% 50%",
+    scrub: true,
+    // markers: true,
+  },
+});
+scatterMotion
   .to(".sc-style .gather-item.a1", { xPercent: 15, yPercent: -100, opacity: 0.5 }, "b")
   .to(".sc-style .gather-item.a2", { xPercent: -15, yPercent: 60, opacity: 0.5 }, "b")
   .to(".sc-style .gather-item.a3", { xPercent: -15, yPercent: 60, opacity: 0.5 }, "b");
@@ -226,8 +297,8 @@ gsap.set(".gather-letters .l6", { xPercent: 20, yPercent: 0, opacity: 0 });
 const gatherLettersMotion = gsap.timeline({
   scrollTrigger: {
     trigger: ".sc-language",
-    start: "0% 80%",
-    end: "80% 0%",
+    start: "0% 100%",
+    end: "50% 0%",
     scrub: true,
     // markers: true,
   },
@@ -319,10 +390,10 @@ const paragraphMotion = gsap.timeline({
 });
 paragraphMotion
   .from(".sc-credits .border-animation", { width: 0 }, "a")
-  .from(".sc-credits .p-col1 .line", { yPercent: 200, opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-credits .p-col2 .line", { yPercent: 200, opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-credits .p-col3 .line", { yPercent: 200, opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-credits .p-col4 .line", { yPercent: 200, opacity: 0, stagger: 0.1 }, "a");
+  .from(".sc-credits .p-col1 .line", { opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-credits .p-col2 .line", { opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-credits .p-col3 .line", { opacity: 0, stagger: 0.1 }, "a")
+  .from(".sc-credits .p-col4 .line", { opacity: 0, stagger: 0.1 }, "a");
 
 // footer
 gsap.from("footer .omega", {

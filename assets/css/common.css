@@ -9,21 +9,20 @@
 :root {
   --color-text: #fff;
   --color-bg: #000;
-  --font-family-glare: "GlareVariable", Iowan Old Style, Apple Garamond,
-    Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  --font-family-sans: "SansVariable", -apple-system, BlinkMacSystemFont,
-    avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu,
-    roboto, noto, arial, sans-serif;
-  --font-family-serif: "SerifVariable", Iowan Old Style, Apple Garamond,
-    Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  --font-family-text: "TextVariable", Iowan Old Style, Apple Garamond,
-    Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --font-family-glare: "GlareVariable", Iowan Old Style, Apple Garamond, Baskerville,
+    Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol;
+  --font-family-sans: "SansVariable", -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  --font-family-serif: "SerifVariable", Iowan Old Style, Apple Garamond, Baskerville,
+    Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol;
+  --font-family-text: "TextVariable", Iowan Old Style, Apple Garamond, Baskerville, Times New Roman,
+    Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --header-height: 3.875rem;
   --sidebar-width: var(--header-height);
   --container-width: calc(100% - (var(--sidebar-width)));
+  --container-height: calc(100vh - var(--header-height) - (var(--padding) * 2));
   --padding: 1.25rem;
   --container-padding: 0 var(--padding);
 }

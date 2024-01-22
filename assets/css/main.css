@@ -313,6 +313,9 @@
   font-variation-settings: "wght" 200;
   line-height: 1.1;
 }
+.sc-intro .top-section p .line {
+  display: block;
+}
 .sc-intro .top-section p:last-child {
   margin-left: 50%;
 }
@@ -334,8 +337,16 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 1.25rem;
-  border-top: 1px solid #fff;
+  /* border-top: 1px solid #fff; */
   padding: 0.2em 0.5em 0.2em 0;
+}
+.sc-intro .border-animation {
+  position: absolute;
+  top: -0.25em;
+  left: 0;
+  width: 212%;
+  height: 1px;
+  background-color: #fff;
 }
 .sc-intro .right-area {
   display: grid;
@@ -357,6 +368,110 @@
   font-weight: 600;
   text-transform: uppercase;
   border: 1px solid #fff;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+}
+.sc-intro .right-area a:hover [class*="char"] {
+  display: inline-block;
+  animation: waveAnimation 0.7s ease-in-out;
+}
+.sc-intro .right-area a:hover .char1 {
+  animation-delay: 0s;
+}
+.sc-intro .right-area a:hover .char2 {
+  animation-delay: 0.01s;
+}
+.sc-intro .right-area a:hover .char3 {
+  animation-delay: 0.02s;
+}
+.sc-intro .right-area a:hover .char4 {
+  animation-delay: 0.03s;
+}
+.sc-intro .right-area a:hover .char5 {
+  animation-delay: 0.04s;
+}
+.sc-intro .right-area a:hover .char6 {
+  animation-delay: 0.05s;
+}
+.sc-intro .right-area a:hover .char7 {
+  animation-delay: 0.06s;
+}
+.sc-intro .right-area a:hover .char8 {
+  animation-delay: 0.07s;
+}
+.sc-intro .right-area a:hover .char9 {
+  animation-delay: 0.08s;
+}
+.sc-intro .right-area a:hover .char10 {
+  animation-delay: 0.09s;
+}
+.sc-intro .right-area a:hover .char11 {
+  animation-delay: 0.1s;
+}
+.sc-intro .right-area a:hover .char12 {
+  animation-delay: 0.11s;
+}
+.sc-intro .right-area a:hover .char13 {
+  animation-delay: 0.12s;
+}
+.sc-intro .right-area a:hover .char14 {
+  animation-delay: 0.13s;
+}
+.sc-intro .right-area a:hover .char15 {
+  animation-delay: 0.14s;
+}
+.sc-intro .right-area a:hover .char16 {
+  animation-delay: 0.15s;
+}
+.sc-intro .right-area a:hover .char17 {
+  animation-delay: 0.16s;
+}
+.sc-intro .right-area a:hover .char18 {
+  animation-delay: 0.17s;
+}
+.sc-intro .right-area a:hover .char19 {
+  animation-delay: 0.18s;
+}
+.sc-intro .right-area a:hover .char20 {
+  animation-delay: 0.19s;
+}
+.sc-intro .right-area a:hover .char21 {
+  animation-delay: 0.2s;
+}
+.sc-intro .right-area a:hover .char22 {
+  animation-delay: 0.21s;
+}
+.sc-intro .right-area a:hover .char23 {
+  animation-delay: 0.22s;
+}
+.sc-intro .right-area a:hover .char24 {
+  animation-delay: 0.23s;
+}
+.sc-intro .right-area a:hover .char25 {
+  animation-delay: 0.24s;
+}
+.sc-intro .right-area a:hover .char26 {
+  animation-delay: 0.25s;
+}
+.sc-intro .right-area a:hover .char27 {
+  animation-delay: 0.26s;
+}
+.sc-intro .right-area a:hover .char28 {
+  animation-delay: 0.27s;
+}
+@keyframes waveAnimation {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  25%,
+  75% {
+    transform: translateY(15%);
+  }
+  50% {
+    transform: translateY(-100%);
+  }
 }
 
 .sc-style {
@@ -364,6 +479,7 @@
   height: 400vh;
   margin-top: 10vh;
   margin-bottom: -100vh;
+  padding: var(--container-padding);
   margin-left: auto;
   font-size: 12vw;
   font-variation-settings: "wght" 200;
@@ -372,7 +488,7 @@
 .sc-style .style-inner {
   position: sticky;
   width: 100%;
-  height: 100vh;
+  height: var(--container-height);
   top: calc(var(--header-height) + var(--padding));
 }
 .sc-style .gather-a {
@@ -380,7 +496,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -389,25 +505,21 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 .sc-style .gather-item img {
   object-fit: contain;
   object-position: 50% 50%;
-  height: 100vh;
+  height: 100%;
 }
 .sc-style .style-title {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: var(--container-width);
+  width: 100%;
   height: 100%;
-  padding: var(--container-padding);
   line-height: 1;
-  /* margin-left: auto; */
 }
 .sc-style .style-title .line {
   display: flex;
@@ -446,7 +558,7 @@
   position: sticky;
   top: calc(var(--header-height) + var(--padding));
   width: 100%;
-  height: calc(100vh - var(--header-height) - (var(--padding) * 2));
+  height: var(--container-height);
   padding-top: 0.25rem;
   padding-bottom: 1.25rem;
   border-radius: 16px;
@@ -496,6 +608,39 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   text-align: center;
+  cursor: pointer;
+}
+/* 공통 */
+.random-btn:hover [class*="char"] {
+  display: inline-block;
+  animation: waveAnimation 0.7s ease-in-out;
+}
+.random-btn:hover .char1 {
+  animation-delay: 0s;
+}
+.random-btn:hover .char2 {
+  animation-delay: 0.02s;
+}
+.random-btn:hover .char3 {
+  animation-delay: 0.04s;
+}
+.random-btn:hover .char4 {
+  animation-delay: 0.06s;
+}
+.random-btn:hover .char5 {
+  animation-delay: 0.08s;
+}
+.random-btn:hover .char6 {
+  animation-delay: 0.1s;
+}
+.random-btn:hover .char7 {
+  animation-delay: 0.12s;
+}
+.random-btn:hover .char8 {
+  animation-delay: 0.14s;
+}
+.random-btn:hover .char9 {
+  animation-delay: 0.16s;
 }
 .sc-possible .possible-content {
   display: flex;
@@ -822,7 +967,7 @@ input[type="range"]::-moz-range-thumb:hover {
 /* bg-swiper */
 .sc-poster .bg-swiper-container {
   width: 100%;
-  height: calc(100% - var(--header-height) - (var(--padding) * 2));
+  height: var(--container-height);
   overflow: hidden;
   z-index: 1;
 }
@@ -868,6 +1013,7 @@ input[type="range"]::-moz-range-thumb:hover {
   object-position: 50% 50%;
 }
 .sc-poster .random-btn {
+  display: flex;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -878,6 +1024,7 @@ input[type="range"]::-moz-range-thumb:hover {
   font-size: 0.75rem;
   text-transform: uppercase;
   z-index: 1;
+  cursor: pointer;
 }
 
 .sc-language {
@@ -943,27 +1090,23 @@ input[type="range"]::-moz-range-thumb:hover {
   position: sticky;
   top: calc(var(--header-height) + var(--padding));
   width: 100%;
-  height: calc(100vh - var(--header-height) - (var(--padding) * 2));
+  height: var(--container-height);
 }
 .sc-purchase .gather-capital-a {
-  --inner-height: calc(100vh - var(--header-height) - (var(--padding) * 2));
   position: absolute;
   top: 0;
-  left: calc(50% - (var(--inner-height) * 0.5));
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
+  left: 0;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
 }
 .sc-purchase .gather-capital-a > div {
+  display: flex;
+  justify-content: center;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 45%;
-  height: 45%;
+  width: 100%;
+  height: 100%;
 }
 .sc-purchase .purchase-content {
   display: grid;
@@ -1062,19 +1205,6 @@ input[type="range"]::-moz-range-thumb:hover {
 .sc-purchase .purchase-item:hover .char10 {
   animation-delay: 0.18s;
 }
-@keyframes waveAnimation {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  25%,
-  75% {
-    tranform: translateY(15%);
-  }
-  50% {
-    transform: translateY(-100%);
-  }
-}
 
 .sc-credits {
   width: var(--container-width);
@@ -1117,6 +1247,7 @@ input[type="range"]::-moz-range-thumb:hover {
 }
 .sc-credits p {
   line-height: 1;
+  margin-right: 15%;
 }
 .sc-credits .typeface-section .p-col1 {
   grid-column: 1/2;
