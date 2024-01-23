@@ -1,10 +1,9 @@
 $(document).ready(function () {
   setTimeout(function () {
     $(".loader").hide();
-    $(".total-container").show();
     setTimeout(function () {
       $(".sc-main .scatter-letters .scatter-item").addClass("move");
-    }, 3000);
+    }, 2000);
   }, 3000);
 });
 
@@ -341,7 +340,7 @@ gsap.to(".sc-language .content-section p", {
 const gatherCapitlAMotion = gsap.timeline({
   scrollTrigger: {
     trigger: ".sc-purchase .gather-capital-a",
-    start: "15% 0%",
+    start: "0% 0%",
     end: "150% 0%",
     scrub: true,
     // markers: true,
