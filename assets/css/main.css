@@ -378,7 +378,6 @@
   border: 1px solid #fff;
   overflow: hidden;
   z-index: 1;
-  cursor: pointer;
 }
 .sc-intro .right-area a:hover [class*="char"] {
   display: inline-block;
@@ -616,7 +615,6 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   text-align: center;
-  cursor: pointer;
 }
 /* 공통 */
 .random-btn:hover [class*="char"] {
@@ -917,7 +915,6 @@ input[type="range"]::-webkit-slider-thumb {
   width: 20px;
   height: 20px;
   background-color: #000;
-  cursor: pointer;
   border-radius: 50%;
   border: 1px solid #fff;
 }
@@ -925,7 +922,6 @@ input[type="range"]::-moz-range-thumb {
   width: 20px;
   height: 20px;
   background-color: #000;
-  cursor: pointer;
   border-radius: 50%;
   border: 1px solid #fff;
 }
@@ -1032,7 +1028,6 @@ input[type="range"]::-moz-range-thumb:hover {
   font-size: 0.75rem;
   text-transform: uppercase;
   z-index: 1;
-  cursor: pointer;
 }
 
 .sc-language {

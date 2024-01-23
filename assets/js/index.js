@@ -407,3 +407,11 @@ gsap.from("footer .omega", {
   scale: 0,
   fontVariationSettings: `"wght" 700`,
 });
+
+document.addEventListener("mousemove", function (e) {
+  const cursor = document.querySelector(".cursor");
+  const x = e.clientX;
+  const y = e.clientY;
+  cursor.style.left = x + "px";
+  cursor.style.top = y + "px";
+});
