@@ -48,3 +48,6 @@
 .text {
   font-family: var(--font-family-text);
 }
+.hidden {
+  overflow: hidden;
+}

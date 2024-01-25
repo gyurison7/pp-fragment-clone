@@ -1,45 +1,6 @@
 @import url("./reset.css");
 @import url("./common.css");
 
-.loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  z-index: 999;
-}
-.loader-spinner {
-  display: block;
-  position: absolute;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  width: 2em;
-  height: 2em;
-  fill: #fff;
-  animation: spinAnimation 1s ease-in-out infinite;
-}
-@keyframes spinAnimation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.header-side-bar {
-  opacity: 0;
-  animation: headerAnimation 2s 6.5s ease forwards;
-}
-@keyframes headerAnimation {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 header {
   display: flex;
   align-items: center;
@@ -78,14 +39,66 @@ header .header-title {
   flex: 1;
   text-align: center;
 }
+header .header-title a:hover,
+header .header-sub-title a:hover {
+  text-decoration: underline;
+}
 header .get-the-font {
   text-align: right;
   padding: 0.75rem 1.25rem;
   color: var(--color-bg);
   background-color: var(--color-text);
-  transition: opacity 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-
+header .get-the-font .wave-wrapper {
+  display: flex;
+  overflow: hidden;
+}
+header .get-the-font:hover [class*="char"] {
+  animation: waveAnimation 1s ease-out;
+}
+header .get-the-font:hover .char1 {
+  animation-delay: 0s;
+}
+header .get-the-font:hover .char2 {
+  animation-delay: 0.02s;
+}
+header .get-the-font:hover .char3 {
+  animation-delay: 0.04s;
+}
+header .get-the-font:hover .char4 {
+  animation-delay: 0.06s;
+}
+header .get-the-font:hover .char5 {
+  animation-delay: 0.08s;
+}
+header .get-the-font:hover .char6 {
+  animation-delay: 0.1s;
+}
+header .get-the-font:hover .char7 {
+  animation-delay: 0.12s;
+}
+header .get-the-font:hover .char8 {
+  animation-delay: 0.14s;
+}
+header .get-the-font:hover .char9 {
+  animation-delay: 0.16s;
+}
+header .get-the-font:hover .char10 {
+  animation-delay: 0.18s;
+}
+@keyframes waveAnimation {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  25%,
+  75% {
+    transform: translateY(15%);
+  }
+  50% {
+    transform: translateY(-100%);
+  }
+}
 .side-bar {
   position: fixed;
   top: var(--header-height);

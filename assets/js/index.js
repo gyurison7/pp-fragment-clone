@@ -1,19 +1,52 @@
-$(document).ready(function () {
-  setTimeout(function () {
-    $(".loader").hide();
-    setTimeout(function () {
-      $(".sc-main .scatter-letters .scatter-item").addClass("move");
-    }, 2000);
-  }, 3000);
-});
+history.scrollRestoration = "manual";
+
+// sc-main
+const introMotion = gsap.timeline();
+introMotion
+  .add(() => {
+    $("body").addClass("hidden");
+  })
+  .from(".sc-main .scatter-letters .scatter-item", {
+    opacity: 0,
+    stagger: {
+      from: "random",
+      each: 0.05,
+    },
+    delay: 1,
+    duration: 3,
+    ease: "power2.out",
+  })
+  .add(() => {
+    $(".sc-main .scatter-letters .scatter-item").addClass("on");
+  }, "-=3")
+  .from($(".sc-main .top-area"), { opacity: 0 }, "a")
+  .to(
+    ".sc-main .rolling-letters",
+    1,
+    {
+      yPercent: 100,
+      bottom: "100%",
+      stagger: {
+        from: "random",
+        each: 0.1,
+      },
+    },
+    "a"
+  )
+  .from($("header"), { yPercent: -100, opacity: 0 }, "b")
+  .from($(".side-bar"), { xPercent: -100, opacity: 0 }, "b")
+  .from($(".bottom-area"), { yPercent: 100, opacity: 0 }, "b")
+  .add(() => {
+    $("body").removeClass("hidden");
+  }, "b");
 
 // 동적 줄바꿈 처리
 function dynamicWrapLines() {
-  const elementArray = document.querySelectorAll(".dynamic-text");
+  const elementArray = document.querySelectorAll(".dynamic-paragraph");
 
   elementArray.forEach((element) => {
-    const text = element.innerText;
-    const wordArray = text.split(" "); // 공백을 기준으로 단어를 잘라서 배열 생성
+    const content = element.innerText; // 문단의 내용
+    const wordArray = content.split(" "); // 공백을 기준으로 단어를 잘라서 배열 생성
     let line = "";
     element.innerHTML = "";
 
@@ -29,9 +62,12 @@ function dynamicWrapLines() {
       // tempSpan의 가로너비와 해당 요소의 가로너비 비교
       if (tempSpan.offsetWidth > element.offsetWidth) {
         const newLine = document.createElement("span"); // tempSpan의 너비가 크다면 새로운 라인 생성
+        const animationWrapper = document.createElement("span"); // 애니메이션 적용을 위한 부모 wrapper 생성
+        animationWrapper.className = "animation-wrapper";
         newLine.className = "line";
-        newLine.innerText = line; // 현재 단어 이전까지의 텍스트
-        element.appendChild(newLine); // 최종적으로 요소에 새로운 라인을 자식으로 추가
+        newLine.innerText = line; // line에는 현재 단어 이전까지의 텍스트가 담겨 있음
+        element.appendChild(animationWrapper); // 해당 요소에 부모 wrapper를 먼저 추가
+        animationWrapper.appendChild(newLine); // 최종적으로 부모 wrapper에 라인을 자식으로 추가
         line = word + " "; // 라인에 현재 단어를 넣어서 초기화
       } else {
         line = testLine;
@@ -41,13 +77,21 @@ function dynamicWrapLines() {
     });
 
     const lastLine = document.createElement("span");
+    const lastWrapper = document.createElement("span"); // 애니메이션 적용을 위한 부모 wrapper 생성
+    lastWrapper.className = "animation-wrapper";
     lastLine.className = "line";
     lastLine.innerText = line;
-    element.appendChild(lastLine);
+    element.appendChild(lastWrapper); // 해당 요소에 부모 wrapper를 먼저 추가
+    lastWrapper.appendChild(lastLine);
   });
 }
 
-dynamicWrapLines();
+document.addEventListener("DOMContentLoaded", function () {
+  dynamicWrapLines();
+
+  dynamicAnimation1();
+  dynamicAnimation2();
+});
 window.addEventListener("resize", dynamicWrapLines);
 
 // sc-intro
@@ -56,28 +100,30 @@ const paragraphMotion1 = gsap.timeline({
     trigger: ".sc-intro .top-section",
     start: "0% 100%",
     end: "100% 50%",
-    scrub: true,
+    // scrub: true
     // markers: true,
   },
 });
 paragraphMotion1
-  .from(".sc-intro .top-section .description1 .line", { opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-intro .top-section .description2 .line", { opacity: 0, stagger: 0.1 }, "a+=1")
+  .from(".sc-intro .top-section .description1 .line", { yPercent: 100, stagger: 0.1 }, "a")
+  .from(".sc-intro .top-section .description2 .line", { yPercent: 100, stagger: 0.1 }, "a+=1")
   .from(".sc-intro .intro-img", { yPercent: 25 }, "a+=2");
 
-const paragraphMotion2 = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".sc-intro .bottom-section",
-    start: "0% 60%",
-    end: "100% 50%",
-    scrub: true,
-    // markers: true,
-  },
-});
-paragraphMotion2
-  .from(".sc-intro .bottom-section .description1 .line", { opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-intro .bottom-section .description2 .line", { opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-intro .border-animation", { width: 0, stagger: 0.1 }, "a+=0.5");
+function dynamicAnimation1() {
+  const paragraphMotion2 = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".sc-intro .bottom-section",
+      start: "0% 50%",
+      end: "100% 50%",
+      // scrub: true,
+      // markers: true,
+    },
+  });
+  paragraphMotion2
+    .from(".sc-intro .bottom-section .description1 .line", { yPercent: 100, stagger: 0.1 }, "a")
+    .from(".sc-intro .bottom-section .description2 .line", { yPercent: 100, stagger: 0.1 }, "a")
+    .from(".sc-intro .border-animation", { width: 0, stagger: 0.1 }, "a+=0.5");
+}
 
 // sc-style
 const gatherMotion = gsap.timeline({
@@ -93,6 +139,28 @@ gatherMotion
   .from(".gather-item.a1", { xPercent: 50, yPercent: -25, rotate: "20deg", opacity: 0 }, "a")
   .from(".gather-item.a2", { xPercent: -25, yPercent: -100, rotate: "-30deg", opacity: 0 }, "a")
   .from(".gather-item.a3", { xPercent: -50, yPercent: 15, rotate: "-45deg", opacity: 0 }, "a");
+
+const rollingMotion = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".sc-style",
+    start: "30% 100%",
+    end: "100% 0%",
+    // markers: true,
+  },
+});
+rollingMotion.from(".sc-style .style-title", { yPercent: -100, opacity: 0, duration: 1 }, "a").to(
+  ".sc-style .rolling-letters",
+  {
+    yPercent: 100,
+    bottom: "100%",
+    stagger: {
+      from: "random",
+      each: 0.1,
+    },
+    duration: 1,
+  },
+  "a"
+);
 
 const scatterMotion = gsap.timeline({
   scrollTrigger: {
@@ -192,7 +260,6 @@ $(".sc-glyph .glyph-item").hover(function () {
   $(".sc-glyph .glyph-perview span").text(hoverText);
 });
 
-// slide
 $(".sc-glyph .dropdown-list button").click(function () {
   const text = $(this).text();
   const font = $(this).data("font");
@@ -204,6 +271,17 @@ $(".sc-glyph .dropdown-list button").click(function () {
     "font-family": `var(--font-family-${font})`,
     "font-variation-settings": `"wght" ${weight}`,
   });
+});
+
+gsap.from(".sc-glyph .line", {
+  scrollTrigger: {
+    trigger: ".sc-glyph",
+    start: "0% 80%",
+    end: "30% 100%",
+    // markers: true,
+  },
+  yPercent: 100,
+  stagger: 0.1,
 });
 
 // sc-font
@@ -246,6 +324,7 @@ const bgSwiper = new Swiper(".bg-swiper-container", {
   slidesPerView: 1,
   spaceBetween: 20,
   loop: true,
+  speed: 500,
   navigation: {
     nextEl: ".random-btn",
   },
@@ -259,6 +338,15 @@ const posterSwiper = new Swiper(".poster-swiper-container", {
   slidesPerView: 1,
   spaceBetween: 20,
   loop: true,
+  // effect: "creative",
+  // creativeEffect: {
+  //   prev: {
+  //     translate: [0, "-100%", 0],
+  //   },
+  //   next: {
+  //     translate: [0, "100%", 0],
+  //   },
+  // },
   navigation: {
     nextEl: ".random-btn",
   },
@@ -378,21 +466,23 @@ upAndScatterMotion
   .to(".capital6", { xPercent: -30, yPercent: -5, rotate: "20deg", opacity: 0 }, "c");
 
 // sc-credits
-const paragraphMotion = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".sc-credits",
-    start: "0% 70%",
-    end: "100% 50%",
-    scrub: true,
-    // markers: true,
-  },
-});
-paragraphMotion
-  .from(".sc-credits .border-animation", { width: 0 }, "a")
-  .from(".sc-credits .p-col1 .line", { opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-credits .p-col2 .line", { opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-credits .p-col3 .line", { opacity: 0, stagger: 0.1 }, "a")
-  .from(".sc-credits .p-col4 .line", { opacity: 0, stagger: 0.1 }, "a");
+function dynamicAnimation2() {
+  const paragraphMotion3 = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".sc-credits",
+      start: "0% 70%",
+      end: "100% 50%",
+      // scrub: true,
+      // markers: true,
+    },
+  });
+  paragraphMotion3
+    .from(".sc-credits .border-animation", { width: 0 }, "a")
+    .from(".sc-credits .p-col1 .line", { yPercent: 100, stagger: 0.1 }, "a+=0.1")
+    .from(".sc-credits .p-col2 .line", { yPercent: 100, stagger: 0.1 }, "a+=0.1")
+    .from(".sc-credits .p-col3 .line", { yPercent: 100, stagger: 0.1 }, "a+=0.1")
+    .from(".sc-credits .p-col4 .line", { yPercent: 100, stagger: 0.1 }, "a+=0.1");
+}
 
 // footer
 gsap.from("footer .omega", {
