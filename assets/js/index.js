@@ -86,7 +86,7 @@ function dynamicWrapLines() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
   dynamicWrapLines();
 
   dynamicAnimation1();
@@ -231,7 +231,7 @@ function changeAnimation(selector, moveArray, fontWeightArray, duration = 3000, 
   setTimeout(animate, duration); // 최초 애니메이션 시작
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
   changeAnimation(".p1", [0, 100, 50, 70], [400, 900, 100, 200]);
   changeAnimation(".p2", [0, 100, 40, 0], [700, 800, 200, 100]);
   changeAnimation(".p3", [50, 0, 100, 50], [700, 300, 300, 700]);
