@@ -266,16 +266,18 @@
 .sc-main .bottom-area {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 1.25rem;
+  position: absolute;
+  bottom: var(--padding);
+  width: calc(100% - var(--sidebar-width));
 }
 .sc-main .bottom-area span {
   display: block;
 }
-.sc-main .bottom-area .link:hover {
-  text-decoration: underline;
+.sc-main .bottom-area .link span {
+  border-bottom: 2px solid transparent;
+}
+.sc-main .bottom-area .link:hover span {
+  border-color: #fff;
 }
 
 .sc-intro {

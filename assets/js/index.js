@@ -40,6 +40,37 @@ introMotion
     $("body").removeClass("hidden");
   }, "b");
 
+$(".toggle-btn").click(function () {
+  $(".side-menu, .side-bar").toggleClass("open");
+  if ($(".side-bar").hasClass("open")) {
+    gsap.to(".side-bar", { x: "35.5vw", duration: 0.5, ease: "linear" });
+  } else {
+    gsap.to(".side-bar", { x: 0, duration: 0.5, ease: "linear" });
+  }
+
+  if ($(".side-menu").hasClass("open") && $(".side-bar").hasClass("open")) {
+    gsap.from(".side-menu .title, .side-menu .top-area a", {
+      yPercent: 100,
+      stagger: 0.1,
+    });
+  }
+});
+
+$(".side-menu a").click(function () {
+  $(".side-menu, .side-bar").removeClass("open");
+});
+
+$(document).click(function (e) {
+  if (
+    $(".side-menu").hasClass("open") &&
+    $(".side-bar").hasClass("open") &&
+    !$(e.target).closest(".side-menu").length &&
+    !$(e.target).closest(".side-bar").length
+  ) {
+    $(".side-menu, .side-bar").removeClass("open");
+  }
+});
+
 // 동적 줄바꿈 처리
 function dynamicWrapLines() {
   const elementArray = document.querySelectorAll(".dynamic-paragraph");
@@ -184,8 +215,9 @@ function changeAnimation(selector, moveArray, fontWeightArray, duration = 3000, 
   const originalText = fontElement.textContent; // 원래 텍스트 저장
   const halfWidth = width / 2;
   let num = 0;
+  let timeoutId;
 
-  function animate() {
+  function animate(manual = false) {
     const move = moveArray[num];
     const weight = fontWeightArray[num];
     let transformValue;
@@ -225,10 +257,20 @@ function changeAnimation(selector, moveArray, fontWeightArray, duration = 3000, 
     num++;
     if (num === moveArray.length) num = 0;
 
-    setTimeout(animate, num === 0 ? delay : duration); // 첫 단계로 돌아가기전에 추가 지연
+    if (!manual) {
+      // 자동일 경우에 애니메이션 실행
+      timeoutId = setTimeout(animate, num === 0 ? delay : duration);
+    }
   }
 
-  setTimeout(animate, duration); // 최초 애니메이션 시작
+  timeoutId = setTimeout(animate, duration); // 최초 애니메이션 시작
+
+  $(".sc-possible .random-btn").click(function () {
+    clearTimeout(timeoutId);
+    animate(true); // 수동으로 애니메이션 실행
+
+    timeoutId = setTimeout(animate, 5000); // 5초동안 클릭하지 않을 경우 자동으로 애니메이션 실행
+  });
 }
 
 window.addEventListener("load", function () {
@@ -338,15 +380,17 @@ const posterSwiper = new Swiper(".poster-swiper-container", {
   slidesPerView: 1,
   spaceBetween: 20,
   loop: true,
-  // effect: "creative",
-  // creativeEffect: {
-  //   prev: {
-  //     translate: [0, "-100%", 0],
-  //   },
-  //   next: {
-  //     translate: [0, "100%", 0],
-  //   },
-  // },
+  speed: 500,
+  effect: "creative",
+  creativeEffect: {
+    prev: {
+      shadow: true,
+      translate: [0, 0, -400],
+    },
+    next: {
+      translate: [0, "100%", 0],
+    },
+  },
   navigation: {
     nextEl: ".random-btn",
   },
