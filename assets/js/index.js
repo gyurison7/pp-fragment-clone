@@ -40,12 +40,19 @@ introMotion
     $("body").removeClass("hidden");
   }, "b");
 
+function sideBarOpen() {
+  gsap.to(".side-bar", { x: "35.5vw", duration: 0.5, ease: "linear" });
+}
+function sideBarClose() {
+  gsap.to(".side-bar", { x: 0, duration: 0.5, ease: "linear" });
+}
+
 $(".toggle-btn").click(function () {
   $(".side-menu, .side-bar").toggleClass("open");
   if ($(".side-bar").hasClass("open")) {
-    gsap.to(".side-bar", { x: "35.5vw", duration: 0.5, ease: "linear" });
+    sideBarOpen();
   } else {
-    gsap.to(".side-bar", { x: 0, duration: 0.5, ease: "linear" });
+    sideBarClose();
   }
 
   if ($(".side-menu").hasClass("open") && $(".side-bar").hasClass("open")) {
@@ -58,6 +65,7 @@ $(".toggle-btn").click(function () {
 
 $(".side-menu a").click(function () {
   $(".side-menu, .side-bar").removeClass("open");
+  sideBarClose();
 });
 
 $(document).click(function (e) {
@@ -68,6 +76,7 @@ $(document).click(function (e) {
     !$(e.target).closest(".side-bar").length
   ) {
     $(".side-menu, .side-bar").removeClass("open");
+    sideBarClose();
   }
 });
 

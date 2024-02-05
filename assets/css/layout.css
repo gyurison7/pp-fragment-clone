@@ -106,7 +106,7 @@ header .get-the-font:hover .char10 {
   width: var(--sidebar-width);
   height: 100%;
   background: #000;
-  z-index: 99;
+  z-index: 100;
 }
 .side-bar::after {
   display: block;
@@ -178,7 +178,7 @@ header .get-the-font:hover .char10 {
   top: var(--header-height);
   left: 0;
   bottom: 0;
-  width: 35.5vw;
+  width: calc(35.5vw + var(--sidebar-width));
   height: auto;
   padding: var(--padding);
   font-variation-settings: "wght" 300;
