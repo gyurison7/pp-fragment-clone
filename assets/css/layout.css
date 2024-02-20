@@ -39,9 +39,16 @@ header .header-title {
   flex: 1;
   text-align: center;
 }
+@media (max-width: 699px) {
+  header .header-title {
+    top: auto;
+    left: auto;
+    transform: translate(0, 0);
+  }
+}
 header .header-title a:hover,
 header .header-sub-title a:hover {
-  border-bottom: 2px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 header .get-the-font {
   text-align: right;
@@ -119,14 +126,20 @@ header .get-the-font:hover .char10 {
   background: #fff;
   opacity: 0.2;
 }
-.side-bar .toggle-btn {
+.toggle-btn {
   position: absolute;
   top: calc(50% - var(--sidebar-width));
   width: var(--sidebar-width);
   height: var(--sidebar-width);
 }
-.side-bar .toggle-btn::before,
-.side-bar .toggle-btn::after {
+@media (max-width: 699px) {
+  .toggle-btn {
+    top: 0;
+    right: 0;
+  }
+}
+.toggle-btn::before,
+.toggle-btn::after {
   display: block;
   content: "";
   position: absolute;
@@ -136,28 +149,28 @@ header .get-the-font:hover .char10 {
   background-color: #fff;
   transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
-.side-bar .toggle-btn:hover::before {
+.toggle-btn:hover::before {
   transform: translateY(-75%);
 }
-.side-bar .toggle-btn:hover::after {
+.toggle-btn:hover::after {
   transform: translateY(75%);
 }
-.side-bar.open .toggle-btn::before {
+.toggle-btn.open::before {
   transform: translate(-9%, 200%) rotate(45deg);
 }
-.side-bar.open .toggle-btn::after {
+.toggle-btn.open::after {
   transform: translate(-9%, -200%) rotate(-45deg);
 }
-.side-bar.open .toggle-btn:hover::before {
+.toggle-btn.open:hover::before {
   transform: translate(-9%, 200%) rotate(45deg) scale(0.75);
 }
-.side-bar.open .toggle-btn:hover::after {
+.toggle-btn.open:hover::after {
   transform: translate(-9%, -200%) rotate(-45deg) scale(0.75);
 }
-.side-bar .toggle-btn::before {
+.toggle-btn::before {
   top: calc(50% - 5px);
 }
-.side-bar .toggle-btn::after {
+.toggle-btn::after {
   bottom: calc(50% - 5px);
 }
 .side-bar .label {
@@ -183,9 +196,14 @@ header .get-the-font:hover .char10 {
   padding: var(--padding);
   font-variation-settings: "wght" 300;
   background-color: #000;
-  transform: translateX(-35.5vw);
+  transform: translateX(-100%);
   z-index: 99;
   transition: 0.5s linear;
+}
+@media (max-width: 699px) {
+  .side-menu {
+    width: 100%;
+  }
 }
 .side-menu.open {
   transform: translateX(0);
@@ -275,6 +293,11 @@ footer {
   padding: var(--container-padding);
   margin-left: auto;
   overflow: hidden;
+}
+@media (max-width: 699px) {
+  footer {
+    width: 100%;
+  }
 }
 footer .omega {
   display: block;

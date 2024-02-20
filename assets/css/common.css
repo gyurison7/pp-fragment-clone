@@ -26,16 +26,39 @@
   --padding: 1.25rem;
   --container-padding: 0 var(--padding);
 }
+@media (max-width: 999px) {
+  :root {
+    font-size: 14px;
+  }
+}
+@media (min-width: 1000px) and (max-width: 1199px) {
+  :root {
+    font-size: 15px;
+  }
+}
 @media (min-width: 1200px) and (max-width: 1599px) {
-  html {
+  :root {
     font-size: 16px;
   }
 }
 @media (min-width: 1600px) and (max-width: 1999px) {
-  html {
+  :root {
     font-size: 17px;
   }
 }
+
+.mo-only {
+  display: none;
+}
+@media (max-width: 699px) {
+  .pc-only {
+    display: none;
+  }
+  .mo-only {
+    display: block;
+  }
+}
+
 .glare {
   font-family: var(--font-family-glare);
 }
