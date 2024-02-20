@@ -273,6 +273,9 @@
   width: calc(100% - var(--sidebar-width));
   font-size: 1rem;
 }
+.sc-main .bottom-area .left-area {
+  width: 50%;
+}
 .sc-main .bottom-area span {
   display: block;
   line-height: 1;
