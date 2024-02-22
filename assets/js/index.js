@@ -328,7 +328,7 @@ $(document).click(function (event) {
 // preview
 $(".sc-glyph .glyph-item").hover(function () {
   const hoverText = $(this).find("span").text();
-  $(".sc-glyph .glyph-perview span").text(hoverText);
+  $(".sc-glyph .glyph-perview .preview").text(hoverText);
 });
 
 $(".sc-glyph .dropdown-list button").click(function () {

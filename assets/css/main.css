@@ -939,7 +939,7 @@
   font-family: var(--font-family-sans);
   font-variation-settings: "wght" 400;
 }
-.sc-glyph .glyph-perview span {
+.sc-glyph .glyph-perview .preview {
   display: flex;
   align-items: center;
   justify-content: center;
